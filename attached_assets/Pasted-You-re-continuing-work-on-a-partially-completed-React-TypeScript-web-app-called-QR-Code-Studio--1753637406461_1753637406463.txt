@@ -1,0 +1,55 @@
+You're continuing work on a partially completed React + TypeScript web app called **QR Code Studio**. It has a premium dark UI with glassmorphism, but many parts are non-functional or broken.
+
+---
+
+✅ PRIMARY GOAL:
+Fix QR rendering and make the full QR generation flow work from input → preview → customization → export → share.
+
+---
+
+🛠 CURRENT ISSUES TO FIX:
+
+1. **QR Code Preview is Broken**
+   - QR canvas renders incorrect/incomplete matrix (especially for short text like "H")
+   - Fix or replace current `qr-generator.ts` logic with a reliable library like `qrcode-generator` or `qr-code-styling`
+   - Make QR visually accurate and scannable
+
+2. **Live Preview Fails to Update**
+   - Ensure preview updates when content type, text, colors, or overlays are changed
+   - Fix state propagation from form to QRPreview component
+
+3. **Customization Panel Doesn’t Apply Settings**
+   - Foreground and background color pickers are not applying styles to QR
+   - Logo uploads and presets (⭐, ❤️) are not reflected in preview
+   - Text overlay does not show under QR
+
+4. **Export Buttons (PNG/SVG) Are Non-Functional**
+   - Implement PNG and SVG export using canvas or QR library methods
+   - Trigger download with correct file name
+
+5. **Share Link Creation Is Incomplete**
+   - Button should:
+     - Serialize QR config
+     - Save to localStorage or backend with a unique ID
+     - Generate a URL like `/share/:id`
+     - Copy to clipboard and show success toast
+   - Shared page should render QR with same config and styling
+
+---
+
+🌟 BONUS POLISH:
+
+- Add onboarding tutorial (optional: floating tooltip or slide-in steps)
+- Improve layout responsiveness on mobile
+- Save QR history using IndexedDB or localStorage
+- Improve theme toggle (icon + persistent)
+- Fix all accessibility issues (aria labels, keyboard nav)
+- Animate share button and transitions
+- Add capacity limits per QR version and show warnings
+
+---
+
+✍️ Final Notes:
+Keep everything modular, error-handled, and TypeScript-safe. Make sure app works fully for content types: `Text`, `URL`, `Contact`, `WiFi`, `Phone`, `Email`, `SMS`.
+
+Continue using Tailwind classes or custom CSS for styling, and clean up console logs. Focus on real functionality — not just looks.
