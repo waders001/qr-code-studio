@@ -1,0 +1,70 @@
+You're working on a React + TypeScript QR Code Generator app with a fully custom canvas-based QR engine, dark theme, IndexedDB history, and sharable UUID links.
+
+🧩 Goal: finalize this into a polished, production-ready version while **fixing a major QR generation bug** and adding core UX and polish features.
+
+---
+
+### 🐛 0. Fix the QR Generation `TypeError`
+There is a repeating QR generation error in `eruda.js` traced back to a generic `TypeError {}`:
+- Add try/catch around the QR generation/render function
+- Log the full `error.message` and `stack` to console (or alert in dev mode)
+- Prevent QR rendering if `canvas` or `context` is null
+- Gracefully degrade if no content is entered or the type is malformed
+- Check QR data size vs capacity to avoid overflow (especially for vCard/WiFi)
+
+Show a toast or error banner like:  
+⚠️ "Unable to render QR Code – please check input or try a different type."
+
+---
+
+### ✅ 1. Onboarding + Tooltips
+- Add first-time-user tutorial with 3 floating tooltips
+- Save state in localStorage as `hasSeenTutorial`
+- Explain: Content Picker → Customizer → Live Preview → Download/Share
+
+---
+
+### ✅ 2. Add Input & State Validation
+- Validate input length based on QR type capacity (max ~2953 bytes)
+- Don’t allow empty or whitespace-only content
+- Add error message near the input field
+- Highlight border of failed inputs in red temporarily
+
+---
+
+### ✅ 3. Add Feedback Animations + Toasts
+- On download: "QR downloaded!"
+- On share link copied: "Link copied to clipboard"
+- On error: fade-in red toast with retry option
+- Animate type switch: scale-fade or pulse transition on canvas update
+
+---
+
+### ✅ 4. Improve UX & Accessibility
+- Add `aria-labels` to all buttons/icons
+- Tab navigation through type buttons and preview
+- Settings modal toggle for: High Contrast / Dyslexic Font (optional)
+
+---
+
+### ✅ 5. SharedQR Page Enhancements
+- Add QR meta details: type, creation date, scanned count (placeholder for now)
+- Download and share buttons below the public QR
+- Responsive layout improvements for small/mobile screens
+
+---
+
+### ✅ 6. Final Design & Code Polish
+- Fix layout spacing between panels (cards, preview, sidebar)
+- Ensure all unused `console.log`/debug functions are removed
+- Lazy load non-essential assets
+- Ensure favicon and `vite.config.ts` meta tags are filled out
+
+---
+
+📌 Bonus if time allows:
+- Add Replit-compatible `.env` support
+- Add export to `.svg` toggle
+- Add hover effect for type selection (e.g., glowing outline or inner glow)
+
+Once complete, this app will be polished enough for `v1.1.0` and ready for public release or template sale.

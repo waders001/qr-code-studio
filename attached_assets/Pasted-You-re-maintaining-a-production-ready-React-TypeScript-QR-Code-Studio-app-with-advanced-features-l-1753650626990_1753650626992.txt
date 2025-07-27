@@ -1,0 +1,67 @@
+You're maintaining a production-ready React + TypeScript QR Code Studio app with advanced features like live preview, logo overlays, shareable links, and IndexedDB storage.
+
+Now finish and **verify all functionality** before any design changes. Here's the full checklist I want you to address in one pass:
+
+---
+
+## 🧪 Full Functionality Test & Fix
+
+1. **Test and verify QR generation** for all types:
+   - Text, URL, WiFi (hidden/network), Email, Phone, SMS, Contact (vCard)
+   - Inputs like "H", "Hello", long strings (near 2953 byte limit)
+
+2. **Live Preview**:
+   - Ensure QR preview updates instantly
+   - Custom colors, logo, and size apply correctly
+
+3. **Download Buttons**:
+   - Export PNG and SVG works reliably with and without logos
+   - Handle error cases (e.g., no QR generated yet, or invalid logo)
+
+4. **Share Button**:
+   - Generates working `/share/:id` URL and copies to clipboard
+   - Open share link shows correct QR data (dark glassmorphism layout)
+   - Handle invalid or expired IDs with graceful fallback UI
+
+5. **All Buttons**:
+   - Test all buttons: Generate, Reset, Upload Logo, Emoji Logo, Theme Toggle, Download, Copy Share Link, etc.
+   - Prevent multiple rapid clicks from breaking flow
+
+6. **Form Behavior**:
+   - Reset/Clear button resets all fields correctly
+   - Input validation should:
+     - Prevent empty QR
+     - Show character count
+     - Visual capacity meter (red near limit)
+
+7. **Routing**:
+   - `/` loads main studio
+   - `/share/:id` works when loaded directly (SSR-like)
+   - 404 fallback for bad routes
+
+8. **Accessibility**:
+   - All elements keyboard-navigable
+   - Add `aria-labels` to buttons
+   - QR preview should have alt/fallback
+
+9. **Error Handling**:
+   - Wrap QR render logic in try/catch
+   - Use `toast.error()` for failures
+   - Avoid crashes from short input or corrupt logo files
+
+10. **IndexedDB/Analytics**:
+    - Ensure history is stored and retrievable
+    - No storage quota issues
+    - Show last 5–10 QR sessions
+
+---
+
+## 🎯 Final Output
+
+Once complete:
+- ✅ No console errors/warnings
+- ✅ All features tested and stable
+- ✅ UI untouched (we’ll polish visuals after this)
+- ✅ Ready for branding and production deploy
+
+Let me know exactly what was changed or fixed in your output summary.

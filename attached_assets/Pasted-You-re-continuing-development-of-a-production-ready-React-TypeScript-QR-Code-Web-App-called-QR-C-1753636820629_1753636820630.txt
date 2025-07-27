@@ -1,0 +1,54 @@
+You're continuing development of a production-ready React + TypeScript QR Code Web App called **QR Code Studio**. The base UI is mostly in place with glassmorphism styling, but several parts are broken or incomplete. Please revise and complete the following:
+
+---
+
+🎯 PRIMARY GOAL: 
+Make QR Code Studio fully functional and polished. Users should be able to:
+- Select a content type (Text, URL, WiFi, Contact, etc.)
+- Input content dynamically
+- Customize color, size, overlays
+- Live-preview the correct QR code
+- Export as PNG or SVG
+- Share via generated short links
+
+---
+
+🔧 MUST FIX:
+
+1. **QR Code is broken visually and structurally**
+   - QR canvas does not render valid scannable codes
+   - Fix `qr-generator.ts` logic, especially `modules[][]`, `setupPatterns()`, and `isDark()`
+   - Use a working fallback QR generation method if needed (e.g. `qrcode-generator` or `qr-code-styling`)
+
+2. **QRPreview.tsx is incomplete**
+   - Fix rendering errors, canvas glitches, and alignments
+   - Add error boundary for bad QR data
+   - Match border radius and preview box style with rest of UI
+
+3. **QR Content input and preview don’t stay in sync**
+   - Ensure form data updates trigger real-time QR generation
+   - Fix useEffect or callback handling
+
+4. **Customization doesn't apply visually**
+   - Foreground and background colors don’t update preview
+   - Overlay logos don’t render properly or are missing
+   - Text overlays don't show under QR
+
+5. **Sharing functionality**
+   - Clicking "Create Share Link" should generate a unique link, store the QR config to backend/localStorage, and show confirmation toast
+   - Shared page must show a valid static QR with title and config
+
+---
+
+🌟 BONUS REQUESTS:
+
+- Fix spacing and layout responsiveness (mobile, tablet, desktop)
+- Make the theme toggle more visually appealing and store theme in localStorage
+- Polish animations, hover effects, and CTA buttons
+- Add loading indicators where needed
+- Show error toasts if generation fails (especially for long vCard or WiFi formats)
+- Show QR type capacity limits based on mode/version
+
+---
+
+Use clear modular code, React best practices, and ensure a working version by end of this session.
