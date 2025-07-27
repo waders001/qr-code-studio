@@ -69,144 +69,159 @@ export default function Analytics() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 animate-fade-in">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Stat Cards */}
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">Total QR Codes</p>
-                <p className="text-2xl font-bold text-primary">{analytics.totalQRCodes}</p>
-              </div>
-              <BarChart3 className="w-8 h-8 text-primary" />
+        <div className="glass-card rounded-2xl p-6 hover-lift">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-400">Total QR Codes</p>
+              <p className="text-3xl font-bold text-blue-400 mt-2">{analytics.totalQRCodes}</p>
             </div>
-          </CardContent>
-        </Card>
+            <div className="relative">
+              <BarChart3 className="w-10 h-10 text-blue-400" />
+              <div className="absolute inset-0 w-10 h-10 bg-blue-400/20 rounded-lg blur animate-pulse"></div>
+            </div>
+          </div>
+        </div>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">This Week</p>
-                <p className="text-2xl font-bold text-green-600">{analytics.weeklyCount}</p>
-              </div>
-              <Calendar className="w-8 h-8 text-green-600" />
+        <div className="glass-card rounded-2xl p-6 hover-lift">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-400">This Week</p>
+              <p className="text-3xl font-bold text-green-400 mt-2">{analytics.weeklyCount}</p>
             </div>
-          </CardContent>
-        </Card>
+            <div className="relative">
+              <Calendar className="w-10 h-10 text-green-400" />
+              <div className="absolute inset-0 w-10 h-10 bg-green-400/20 rounded-lg blur animate-pulse"></div>
+            </div>
+          </div>
+        </div>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">Most Used</p>
-                <p className="text-2xl font-bold text-purple-600 capitalize">
-                  {Object.entries(analytics.typeDistribution).reduce((a, b) => 
-                    analytics.typeDistribution[a[0]] > analytics.typeDistribution[b[0]] ? a : b
-                  )?.[0] || 'None'}
-                </p>
-              </div>
-              <TrendingUp className="w-8 h-8 text-purple-600" />
+        <div className="glass-card rounded-2xl p-6 hover-lift">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-400">Most Used</p>
+              <p className="text-3xl font-bold text-purple-400 capitalize mt-2">
+                {Object.entries(analytics.typeDistribution).length > 0 
+                  ? Object.entries(analytics.typeDistribution).reduce((a, b) => 
+                      analytics.typeDistribution[a[0]] > analytics.typeDistribution[b[0]] ? a : b
+                    )?.[0] || 'None'
+                  : 'None'
+                }
+              </p>
             </div>
-          </CardContent>
-        </Card>
+            <div className="relative">
+              <TrendingUp className="w-10 h-10 text-purple-400" />
+              <div className="absolute inset-0 w-10 h-10 bg-purple-400/20 rounded-lg blur animate-pulse"></div>
+            </div>
+          </div>
+        </div>
 
-        <Card>
-          <CardContent className="p-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-muted-foreground">Downloads</p>
-                <p className="text-2xl font-bold text-orange-600">
-                  {Object.values(analytics.downloadStats).reduce((a, b) => a + b, 0)}
-                </p>
-              </div>
-              <Download className="w-8 h-8 text-orange-600" />
+        <div className="glass-card rounded-2xl p-6 hover-lift">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-400">Downloads</p>
+              <p className="text-3xl font-bold text-orange-400 mt-2">
+                {Object.values(analytics.downloadStats).length > 0 
+                  ? Object.values(analytics.downloadStats).reduce((a, b) => a + b, 0) 
+                  : 0
+                }
+              </p>
             </div>
-          </CardContent>
-        </Card>
+            <div className="relative">
+              <Download className="w-10 h-10 text-orange-400" />
+              <div className="absolute inset-0 w-10 h-10 bg-orange-400/20 rounded-lg blur animate-pulse"></div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Type Distribution */}
-        <Card>
-          <CardHeader>
-            <CardTitle>QR Type Distribution</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {Object.entries(analytics.typeDistribution).map(([type, count]) => {
-                const total = Object.values(analytics.typeDistribution).reduce((a, b) => a + b, 0);
-                const percentage = total > 0 ? Math.round((count / total) * 100) : 0;
-                
-                return (
-                  <div key={type} className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium capitalize">{type}</span>
-                      <span className="text-sm text-muted-foreground">{percentage}%</span>
-                    </div>
-                    <Progress value={percentage} className="h-2" />
+        <div className="glass-card rounded-2xl p-6 hover-lift">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-2 h-8 bg-gradient-to-b from-cyan-400 to-cyan-600 rounded-full"></div>
+            <h2 className="text-xl font-semibold text-white">QR Type Distribution</h2>
+          </div>
+          <div className="space-y-5">
+            {Object.entries(analytics.typeDistribution).map(([type, count]) => {
+              const total = Object.values(analytics.typeDistribution).reduce((a, b) => a + b, 0);
+              const percentage = total > 0 ? Math.round((count / total) * 100) : 0;
+              
+              return (
+                <div key={type} className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium capitalize text-gray-300">{type}</span>
+                    <span className="text-sm text-gray-400 font-mono">{percentage}%</span>
                   </div>
-                );
-              })}
-            </div>
-          </CardContent>
-        </Card>
+                  <div className="w-full bg-black/20 rounded-full h-3 overflow-hidden">
+                    <div 
+                      className="h-full bg-gradient-to-r from-cyan-400 to-cyan-600 rounded-full transition-all duration-1000 ease-out"
+                      style={{ width: `${percentage}%` }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+            {Object.keys(analytics.typeDistribution).length === 0 && (
+              <p className="text-gray-400 text-center py-8">No data available yet</p>
+            )}
+          </div>
+        </div>
 
         {/* Recent Activity */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              {analytics.recentActivity.length === 0 ? (
-                <p className="text-muted-foreground text-sm">No recent activity</p>
-              ) : (
-                analytics.recentActivity.map((activity, index) => (
-                  <div key={index} className="flex items-center gap-3 p-3 bg-muted rounded-lg">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">
-                      <span className="text-sm">{getEventIcon(activity.eventType)}</span>
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm font-medium">
-                        {formatEventType(activity.eventType)}
-                        {activity.contentType && (
-                          <span className="text-muted-foreground"> • {activity.contentType}</span>
-                        )}
-                        {activity.exportFormat && (
-                          <span className="text-muted-foreground"> • {activity.exportFormat.toUpperCase()}</span>
-                        )}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        {new Date(activity.timestamp).toLocaleString()}
-                      </p>
-                    </div>
+        <div className="glass-card rounded-2xl p-6 hover-lift">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-2 h-8 bg-gradient-to-b from-pink-400 to-pink-600 rounded-full"></div>
+            <h2 className="text-xl font-semibold text-white">Recent Activity</h2>
+          </div>
+          <div className="space-y-4 max-h-96 overflow-y-auto">
+            {analytics.recentActivity.length === 0 ? (
+              <p className="text-gray-400 text-center py-8">No recent activity</p>
+            ) : (
+              analytics.recentActivity.map((activity, index) => (
+                <div key={index} className="flex items-center gap-4 p-4 neumorphic-inset rounded-xl">
+                  <div className="w-12 h-12 glass-card rounded-full flex items-center justify-center">
+                    <span className="text-lg">{getEventIcon(activity.eventType)}</span>
                   </div>
-                ))
-              )}
-            </div>
-          </CardContent>
-        </Card>
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-white">
+                      {formatEventType(activity.eventType)}
+                      {activity.contentType && (
+                        <span className="text-gray-400"> • {activity.contentType}</span>
+                      )}
+                      {activity.exportFormat && (
+                        <span className="text-gray-400"> • {activity.exportFormat.toUpperCase()}</span>
+                      )}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {new Date(activity.timestamp).toLocaleString()}
+                    </p>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
       </div>
 
       {/* Download Stats */}
       {Object.keys(analytics.downloadStats).length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Download Statistics</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {Object.entries(analytics.downloadStats).map(([format, count]) => (
-                <div key={format} className="text-center p-4 bg-muted rounded-lg">
-                  <p className="text-2xl font-bold text-primary">{count}</p>
-                  <p className="text-sm text-muted-foreground uppercase">{format}</p>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        <div className="glass-card rounded-2xl p-6 hover-lift">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-2 h-8 bg-gradient-to-b from-emerald-400 to-emerald-600 rounded-full"></div>
+            <h2 className="text-xl font-semibold text-white">Download Statistics</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {Object.entries(analytics.downloadStats).map(([format, count]) => (
+              <div key={format} className="text-center p-4 neumorphic-inset rounded-xl">
+                <p className="text-2xl font-bold text-emerald-400">{count}</p>
+                <p className="text-sm text-gray-400 uppercase font-medium mt-1">{format}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   );

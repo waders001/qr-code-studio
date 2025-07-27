@@ -157,13 +157,14 @@ export default function QRCodeStudio() {
       case 'text':
         return (
           <div className="space-y-4">
-            <Label htmlFor="text">Text Content</Label>
-            <Textarea
+            <label htmlFor="text" className="block text-sm font-medium text-gray-300 mb-2">Text Content</label>
+            <textarea
               id="text"
               value={formData.text || ''}
               onChange={(e) => updateFormData('text', e.target.value)}
               placeholder="Enter your text here..."
               rows={4}
+              className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all resize-none"
             />
           </div>
         );
@@ -171,15 +172,16 @@ export default function QRCodeStudio() {
       case 'url':
         return (
           <div className="space-y-4">
-            <Label htmlFor="url">URL</Label>
-            <Input
+            <label htmlFor="url" className="block text-sm font-medium text-gray-300 mb-2">URL</label>
+            <input
               id="url"
               type="url"
               value={formData.url || ''}
               onChange={(e) => updateFormData('url', e.target.value)}
               placeholder="https://example.com"
+              className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
             />
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-gray-400">
               No need to include https:// - we'll add it automatically
             </p>
           </div>
@@ -189,32 +191,35 @@ export default function QRCodeStudio() {
         return (
           <div className="space-y-4">
             <div>
-              <Label htmlFor="name">Full Name</Label>
-              <Input
+              <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+              <input
                 id="name"
                 value={formData.name || ''}
                 onChange={(e) => updateFormData('name', e.target.value)}
                 placeholder="John Doe"
+                className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
               />
             </div>
             <div>
-              <Label htmlFor="contact-phone">Phone</Label>
-              <Input
+              <label htmlFor="contact-phone" className="block text-sm font-medium text-gray-300 mb-2">Phone</label>
+              <input
                 id="contact-phone"
                 type="tel"
                 value={formData.phone || ''}
                 onChange={(e) => updateFormData('phone', e.target.value)}
                 placeholder="+1 (555) 123-4567"
+                className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
               />
             </div>
             <div>
-              <Label htmlFor="contact-email">Email</Label>
-              <Input
+              <label htmlFor="contact-email" className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+              <input
                 id="contact-email"
                 type="email"
                 value={formData.email || ''}
                 onChange={(e) => updateFormData('email', e.target.value)}
                 placeholder="john@example.com"
+                className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
               />
             </div>
           </div>
@@ -224,39 +229,95 @@ export default function QRCodeStudio() {
         return (
           <div className="space-y-4">
             <div>
-              <Label htmlFor="ssid">Network Name (SSID)</Label>
-              <Input
+              <label htmlFor="ssid" className="block text-sm font-medium text-gray-300 mb-2">Network Name (SSID)</label>
+              <input
                 id="ssid"
                 value={formData.ssid || ''}
                 onChange={(e) => updateFormData('ssid', e.target.value)}
                 placeholder="MyWiFiNetwork"
+                className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
               />
             </div>
             <div>
-              <Label htmlFor="wifi-password">Password</Label>
-              <Input
+              <label htmlFor="wifi-password" className="block text-sm font-medium text-gray-300 mb-2">Password</label>
+              <input
                 id="wifi-password"
                 type="password"
                 value={formData.password || ''}
                 onChange={(e) => updateFormData('password', e.target.value)}
                 placeholder="••••••••"
+                className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
               />
             </div>
             <div>
-              <Label htmlFor="encryption">Encryption</Label>
-              <Select
+              <label htmlFor="encryption" className="block text-sm font-medium text-gray-300 mb-2">Encryption</label>
+              <select
                 value={formData.encryption || 'WPA'}
-                onValueChange={(value) => updateFormData('encryption', value)}
+                onChange={(e) => updateFormData('encryption', e.target.value)}
+                className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
               >
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="WPA">WPA/WPA2</SelectItem>
-                  <SelectItem value="WEP">WEP</SelectItem>
-                  <SelectItem value="nopass">None</SelectItem>
-                </SelectContent>
-              </Select>
+                <option value="WPA">WPA/WPA2</option>
+                <option value="WEP">WEP</option>
+                <option value="nopass">None</option>
+              </select>
+            </div>
+          </div>
+        );
+      
+      case 'phone':
+        return (
+          <div className="space-y-4">
+            <label htmlFor="phone-number" className="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
+            <input
+              id="phone-number"
+              type="tel"
+              value={formData.phone || ''}
+              onChange={(e) => updateFormData('phone', e.target.value)}
+              placeholder="+1 (555) 123-4567"
+              className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
+            />
+          </div>
+        );
+      
+      case 'email':
+        return (
+          <div className="space-y-4">
+            <label htmlFor="email-address" className="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+            <input
+              id="email-address"
+              type="email"
+              value={formData.email || ''}
+              onChange={(e) => updateFormData('email', e.target.value)}
+              placeholder="john@example.com"
+              className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
+            />
+          </div>
+        );
+      
+      case 'sms':
+        return (
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="sms-phone" className="block text-sm font-medium text-gray-300 mb-2">Phone Number</label>
+              <input
+                id="sms-phone"
+                type="tel"
+                value={formData.phone || ''}
+                onChange={(e) => updateFormData('phone', e.target.value)}
+                placeholder="+1 (555) 123-4567"
+                className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
+              />
+            </div>
+            <div>
+              <label htmlFor="sms-message" className="block text-sm font-medium text-gray-300 mb-2">Message (Optional)</label>
+              <textarea
+                id="sms-message"
+                value={formData.message || ''}
+                onChange={(e) => updateFormData('message', e.target.value)}
+                placeholder="Pre-filled message text..."
+                rows={3}
+                className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all resize-none"
+              />
             </div>
           </div>
         );
@@ -267,166 +328,197 @@ export default function QRCodeStudio() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-texture">
       {/* Header */}
-      <header className="bg-card shadow-sm border-b">
-        <div className="container mx-auto px-4 py-4">
+      <header className="glass-card-dark border-b border-white/10 sticky top-0 z-50">
+        <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <QrCode className="w-8 h-8 text-primary" />
-              <h1 className="text-2xl font-bold text-foreground">QR Code Studio</h1>
-              <span className="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs font-medium">
-                Enhanced
-              </span>
+            <div className="flex items-center gap-4 group">
+              <div className="relative">
+                <QrCode className="w-10 h-10 text-blue-400 animate-pulse-glow" />
+                <div className="absolute inset-0 w-10 h-10 bg-blue-400/20 rounded-lg blur-lg animate-glow"></div>
+              </div>
+              <div className="flex flex-col">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent">
+                  QR Code Studio
+                </h1>
+                <span className="text-xs text-blue-300/80 font-medium tracking-wider">
+                  Professional QR Generator
+                </span>
+              </div>
+              <div className="px-3 py-1 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30">
+                <span className="text-xs font-semibold text-blue-300">Enhanced</span>
+              </div>
             </div>
             
-            <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="icon"
+            <div className="flex items-center gap-3">
+              <button
                 onClick={() => setShowAnalytics(!showAnalytics)}
-                className="relative"
+                className="relative p-3 rounded-xl glass-card hover-lift group"
               >
-                <BarChart3 className="w-5 h-5" />
-                <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full"></span>
-              </Button>
+                <BarChart3 className="w-5 h-5 text-blue-300 group-hover:text-blue-200 transition-colors" />
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full animate-pulse"></div>
+              </button>
               
-              <Button
-                variant="ghost"
-                size="icon"
+              <button
                 onClick={() => setShowSettings(!showSettings)}
+                className="p-3 rounded-xl glass-card hover-lift group"
               >
-                <Settings className="w-5 h-5" />
-              </Button>
+                <Settings className="w-5 h-5 text-gray-300 group-hover:text-white transition-colors" />
+              </button>
               
-              <Button
-                variant="ghost"
-                size="icon"
+              <button
                 onClick={toggleTheme}
+                className="p-3 rounded-xl glass-card hover-lift"
               >
-                {darkMode ? '☀️' : '🌙'}
-              </Button>
+                <span className="text-lg">{darkMode ? '☀️' : '🌙'}</span>
+              </button>
             </div>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-6">
-        <Tabs defaultValue="generator" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="generator">QR Generator</TabsTrigger>
-            <TabsTrigger value="analytics">Analytics</TabsTrigger>
-          </TabsList>
+      <div className="container mx-auto px-6 py-8">
+        <Tabs defaultValue="generator" className="space-y-8">
+          <div className="flex justify-center">
+            <div className="glass-card rounded-2xl p-2">
+              <TabsList className="grid w-full grid-cols-2 bg-transparent border-0">
+                <TabsTrigger 
+                  value="generator" 
+                  className="data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-200 data-[state=active]:shadow-lg text-gray-400 font-medium px-8 py-3 rounded-xl transition-all duration-300"
+                >
+                  QR Generator
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="analytics"
+                  className="data-[state=active]:bg-purple-500/20 data-[state=active]:text-purple-200 data-[state=active]:shadow-lg text-gray-400 font-medium px-8 py-3 rounded-xl transition-all duration-300"
+                >
+                  Analytics
+                </TabsTrigger>
+              </TabsList>
+            </div>
+          </div>
 
-          <TabsContent value="generator">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <TabsContent value="generator" className="animate-fade-in">
+            <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
               {/* Left Column: Form Controls */}
-              <div className="lg:col-span-2 space-y-6">
+              <div className="xl:col-span-2 space-y-6">
                 {/* Content Type Selection */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Content Type</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-3">
-                      {CONTENT_TYPES.map((type) => (
-                        <Button
-                          key={type.id}
-                          variant={contentType === type.id ? "default" : "outline"}
-                          className="flex flex-col items-center gap-2 p-4 h-auto"
-                          onClick={() => setContentType(type.id)}
-                        >
-                          <span className="text-xl">{type.icon}</span>
-                          <span className="text-xs">{type.label}</span>
-                        </Button>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
+                <div className="glass-card rounded-2xl p-6 hover-lift">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-2 h-8 bg-gradient-to-b from-blue-400 to-blue-600 rounded-full"></div>
+                    <h2 className="text-xl font-semibold text-white">Content Type</h2>
+                  </div>
+                  <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-4">
+                    {CONTENT_TYPES.map((type) => (
+                      <button
+                        key={type.id}
+                        onClick={() => setContentType(type.id)}
+                        className={`
+                          flex flex-col items-center gap-3 p-4 rounded-xl transition-all duration-300 group
+                          ${contentType === type.id 
+                            ? 'bg-gradient-to-br from-blue-500/30 to-blue-600/20 border border-blue-400/50 text-blue-200 shadow-lg shadow-blue-500/20' 
+                            : 'glass-card text-gray-300 hover:text-white hover:bg-white/10'
+                          }
+                        `}
+                      >
+                        <span className="text-2xl group-hover:scale-110 transition-transform duration-200">{type.icon}</span>
+                        <span className="text-xs font-medium">{type.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
 
                 {/* Content Input */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Content</CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                <div className="glass-card rounded-2xl p-6 hover-lift">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-2 h-8 bg-gradient-to-b from-green-400 to-green-600 rounded-full"></div>
+                    <h2 className="text-xl font-semibold text-white">Content</h2>
+                  </div>
+                  <div className="space-y-4">
                     {renderContentForm()}
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
 
                 {/* Customization */}
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Customization</CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
+                <div className="glass-card rounded-2xl p-6 hover-lift">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-2 h-8 bg-gradient-to-b from-purple-400 to-purple-600 rounded-full"></div>
+                    <h2 className="text-xl font-semibold text-white">Customization</h2>
+                  </div>
+                  <div className="space-y-8">
                     {/* Size Selection */}
                     <div>
-                      <Label>QR Code Size</Label>
-                      <div className="grid grid-cols-3 gap-3 mt-2">
+                      <label className="block text-sm font-medium text-gray-300 mb-4">QR Code Size</label>
+                      <div className="grid grid-cols-3 gap-4">
                         {[
                           { value: 128, label: 'Small', icon: '📱' },
                           { value: 256, label: 'Medium', icon: '📟' },
                           { value: 384, label: 'Large', icon: '🖥️' }
                         ].map((size) => (
-                          <Button
+                          <button
                             key={size.value}
-                            variant={customization.size === size.value ? "default" : "outline"}
-                            className="flex items-center gap-2"
                             onClick={() => updateCustomization('size', size.value)}
+                            className={`
+                              flex flex-col items-center gap-3 p-4 rounded-xl transition-all duration-300 group
+                              ${customization.size === size.value 
+                                ? 'bg-gradient-to-br from-purple-500/30 to-purple-600/20 border border-purple-400/50 text-purple-200 shadow-lg shadow-purple-500/20' 
+                                : 'glass-card text-gray-300 hover:text-white hover:bg-white/10'
+                              }
+                            `}
                           >
-                            <span>{size.icon}</span>
-                            <span>{size.label}</span>
-                          </Button>
+                            <span className="text-xl group-hover:scale-110 transition-transform duration-200">{size.icon}</span>
+                            <span className="text-sm font-medium">{size.label}</span>
+                          </button>
                         ))}
                       </div>
                     </div>
 
                     {/* Colors */}
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-6">
                       <div>
-                        <Label htmlFor="fg-color">Foreground Color</Label>
-                        <div className="flex items-center gap-2 mt-2">
+                        <label className="block text-sm font-medium text-gray-300 mb-3">Foreground Color</label>
+                        <div className="flex items-center gap-3">
                           <div 
-                            className="w-10 h-10 rounded border-2 border-border cursor-pointer"
+                            className="w-12 h-12 rounded-xl border border-white/20 cursor-pointer hover:scale-105 transition-transform glass-card"
                             style={{ backgroundColor: customization.fgColor }}
                             onClick={() => document.getElementById('fg-color-input')?.click()}
                           />
-                          <Input
+                          <input
                             id="fg-color-input"
                             type="color"
                             value={customization.fgColor}
                             onChange={(e) => updateCustomization('fgColor', e.target.value)}
                             className="sr-only"
                           />
-                          <Input
+                          <input
                             value={customization.fgColor}
                             onChange={(e) => updateCustomization('fgColor', e.target.value)}
-                            className="font-mono text-sm"
+                            className="flex-1 bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-mono text-sm focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
                           />
                         </div>
                       </div>
                       
                       <div>
-                        <Label htmlFor="bg-color">Background Color</Label>
-                        <div className="flex items-center gap-2 mt-2">
+                        <label className="block text-sm font-medium text-gray-300 mb-3">Background Color</label>
+                        <div className="flex items-center gap-3">
                           <div 
-                            className="w-10 h-10 rounded border-2 border-border cursor-pointer"
+                            className="w-12 h-12 rounded-xl border border-white/20 cursor-pointer hover:scale-105 transition-transform glass-card"
                             style={{ backgroundColor: customization.bgColor }}
                             onClick={() => document.getElementById('bg-color-input')?.click()}
                           />
-                          <Input
+                          <input
                             id="bg-color-input"
                             type="color"
                             value={customization.bgColor}
                             onChange={(e) => updateCustomization('bgColor', e.target.value)}
                             className="sr-only"
                           />
-                          <Input
+                          <input
                             value={customization.bgColor}
                             onChange={(e) => updateCustomization('bgColor', e.target.value)}
-                            className="font-mono text-sm"
+                            className="flex-1 bg-black/20 border border-white/10 rounded-lg px-3 py-2 text-white font-mono text-sm focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
                           />
                         </div>
                       </div>
@@ -434,31 +526,31 @@ export default function QRCodeStudio() {
 
                     {/* Logo Overlay */}
                     <div>
-                      <Label>Logo Overlay (Optional)</Label>
-                      <div className="flex items-center gap-4 mt-2">
-                        <Button asChild variant="outline">
-                          <label>
-                            <span>📤 Upload Logo</span>
-                            <input
-                              type="file"
-                              accept="image/*"
-                              onChange={handleLogoUpload}
-                              className="sr-only"
-                            />
-                          </label>
-                        </Button>
-                        <span className="text-sm text-muted-foreground">or choose preset:</span>
+                      <label className="block text-sm font-medium text-gray-300 mb-4">Logo Overlay (Optional)</label>
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                        <label className="glass-card rounded-xl px-4 py-3 cursor-pointer hover-lift group">
+                          <span className="flex items-center gap-2 text-sm font-medium text-gray-300 group-hover:text-white">
+                            <span className="text-lg">📤</span>
+                            Upload Logo
+                          </span>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={handleLogoUpload}
+                            className="sr-only"
+                          />
+                        </label>
+                        <span className="text-sm text-gray-400">or choose preset:</span>
                         <div className="flex gap-2">
                           {PRESET_LOGOS.slice(0, 3).map((logo) => (
-                            <Button
+                            <button
                               key={logo.id}
-                              variant="outline"
-                              size="icon"
                               onClick={() => selectPresetLogo(logo.id)}
+                              className="w-12 h-12 glass-card rounded-xl flex items-center justify-center hover-lift group"
                               title={logo.label}
                             >
-                              {logo.icon}
-                            </Button>
+                              <span className="text-lg group-hover:scale-110 transition-transform">{logo.icon}</span>
+                            </button>
                           ))}
                         </div>
                       </div>
@@ -466,26 +558,29 @@ export default function QRCodeStudio() {
 
                     {/* Text Overlay */}
                     <div>
-                      <Label htmlFor="overlay-text">Text Overlay (Optional)</Label>
-                      <Input
+                      <label htmlFor="overlay-text" className="block text-sm font-medium text-gray-300 mb-3">Text Overlay (Optional)</label>
+                      <input
                         id="overlay-text"
                         value={customization.overlayText}
                         onChange={(e) => updateCustomization('overlayText', e.target.value)}
                         placeholder="Add text below QR code"
-                        className="mt-2"
+                        className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:border-blue-400/50 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
                       />
                     </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </div>
 
               {/* Right Column: Preview */}
               <div className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Preview</CardTitle>
-                  </CardHeader>
-                  <CardContent>
+                <div className="glass-card rounded-2xl p-6 hover-lift sticky top-24">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-2 h-8 bg-gradient-to-b from-orange-400 to-orange-600 rounded-full"></div>
+                    <h2 className="text-xl font-semibold text-white">Live Preview</h2>
+                    <div className="flex-1"></div>
+                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                  </div>
+                  <div className="neumorphic-inset rounded-2xl p-6">
                     <QRPreview
                       qrData={qrData}
                       size={customization.size}
@@ -494,10 +589,10 @@ export default function QRCodeStudio() {
                       overlayText={customization.overlayText}
                       logoUrl={customization.logoUrl}
                       onSave={handleSaveQR}
-                      className="mx-auto"
+                      className="mx-auto animate-float"
                     />
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </div>
             </div>
 
