@@ -3,6 +3,12 @@
 export const registerServiceWorker = async (): Promise<void> => {
   if ('serviceWorker' in navigator) {
     try {
+      // Check if we're in a development environment that doesn't support Service Workers
+      if (window.location.hostname === 'localhost' || window.location.hostname.includes('webcontainer')) {
+        console.log('Service Worker registration skipped in development environment');
+        return;
+      }
+      
       const registration = await navigator.serviceWorker.register('/sw.js', {
         scope: '/'
       });
@@ -23,7 +29,7 @@ export const registerServiceWorker = async (): Promise<void> => {
       });
       
     } catch (error) {
-      console.error('Service Worker registration failed:', error);
+      console.warn('Service Worker registration failed:', error);
     }
   }
 };

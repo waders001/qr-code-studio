@@ -6,6 +6,7 @@ import QRPreview from "./QRPreview";
 import QRHistory from "./QRHistory";
 import Analytics from "./Analytics";
 import Tutorial from "./Tutorial";
+import WelcomeModal from "./WelcomeModal";
 import { InstallButton } from "./InstallButton";
 import { generateQRData } from "@/lib/qr-generator";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,20 @@ import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
+
+// Custom hook for welcome modal state
+const useWelcomeModal = () => {
+  const [isOpen, setIsOpen] = useState(() => {
+    return localStorage.getItem('hasSeenWelcome') !== 'true';
+  });
+
+  const close = () => {
+    setIsOpen(false);
+    localStorage.setItem('hasSeenWelcome', 'true');
+  };
+
+  return { isOpen, close };
+};
 
 type ContentType = 'text' | 'url' | 'vcard' | 'wifi' | 'phone' | 'email' | 'sms';
 
@@ -69,6 +84,7 @@ export default function QRCodeStudio() {
   const { darkMode, toggleTheme } = useTheme();
   const { toast } = useToast();
   const { saveQR, getHistory, trackEvent } = useIndexedDB();
+  const welcomeModal = useWelcomeModal();
   
   const [contentType, setContentType] = useState<ContentType>('text');
   const [formData, setFormData] = useState<FormData>({});
